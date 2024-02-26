@@ -1,0 +1,55 @@
+# Please read https://github.com/Rongronggg9/RSS-to-Telegram-Bot/blob/master/docs/deployment-guide.md for more details.
+version: '3.6'
+
+services:
+  main:
+    image: rongronggg9/rss-to-telegram:dev  # stable image: rongronggg9/rss-to-telegram
+    container_name: rsstt  # need to be unique
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+    environment:
+      - TOKEN=7070928880:AAHO73duM0F_t9H175KdTKCLNMRWAvcOhG4  # get it from @BotFather
+      - MANAGER=6806465744  # get it from @userinfobot, can be a list (e.g., 1234567890;987654321)
+
+# ↓------ To disable sending via Telegraph, comment out this area ------↓ #
+# Get Telegraph API access tokens: https://api.telegra.ph/createAccount?short_name=RSStT&author_name=Generated%20by%20RSStT&author_url=https%3A%2F%2Fgithub.com%2FRongronggg9%2FRSS-to-Telegram-Bot
+# Refresh the page every time you get a new token.
+# If you have a lot of subscriptions, make sure to get at least 5 tokens.
+#                            ↓ Replace with your access tokens ↓
+      - TELEGRAPH_TOKEN=
+        487433d57796906012254ba2b519e573f412792ba30bc5112927092f05f2
+        f80ca884ba829b1cdf3140acb41f3d232cdf6d20ad0a0b52c183840120b4
+        d835e98197af7188f21caadb06c552f86bf240cadab8121dd770d8f3c5ad
+        6dceb3016dd3f8d1086023a2d6cc7cdb7f083c43a3687aaad45ac8c1dcc6
+        888b1ad982b9b4a6e70a6fb5404bf4b68ee7560fb4fe2e66170bb9882d0a
+# ↑------ To disable sending via Telegraph, comment out this area ------↑ #
+
+# Please read https://github.com/Rongronggg9/RSS-to-Telegram-Bot/blob/master/docs/advanced-settings.md for more details.
+# ↓------ Advanced settings ------↓ #
+      #- ERROR_LOGGING_CHAT=--1001978299842  # default: the first MANAGER
+      #- MULTIUSER=0  # default: 1
+      #- CRON_SECOND=30  # 0-59, default: 0
+      #- DATABASE_URL=mongodb+srv://Apples:tn!PJ*IBOe@Tn7nI76r@cluster0.rtjoxjs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0  # default: sqlite://path/to/config/db.sqlite3
+      #- API_ID=28013143  # get it from https://core.telegram.org/api/obtaining_api_id
+      #- API_HASH=b17c399efa6753c5823d525315bd1997  # get it from https://core.telegram.org/api/obtaining_api_id
+      #- IMG_RELAY_SERVER=https://wsrv.nl/?url=  # default: https://rsstt-img-relay.rongrong.workers.dev/
+      #- IMAGES_WESERV_NL=https://t0.nl/  # default: https://wsrv.nl/
+      #- USER_AGENT=Mozilla/5.0 (Android 12; Mobile; rv:68.0) Gecko/68.0 Firefox/96.0  # default: RSStT/2.2 RSS Reader
+      #- IPV6_PRIOR=1  # default: 0
+      #- T_PROXY=socks5://172.17.0.1:1080  # Proxy used to connect to the Telegram API
+      #- R_PROXY=socks5://172.17.0.1:1080  # Proxy used to fetch feeds
+      #- PROXY_BYPASS_PRIVATE=1  # default: 0
+      #- PROXY_BYPASS_DOMAINS=example.com;example.net
+      #- HTTP_TIMEOUT=30  # default: 12
+      #- HTTP_CONCURRENCY=0  # default: 1024
+      #- HTTP_CONCURRENCY_PER_HOST=0  # default: 16
+      #- TABLE_TO_IMAGE=1  # default: 0
+      #- TRAFFIC_SAVING=1  # default: 0
+      #- LAZY_MEDIA_VALIDATION=1  # default: 0
+      #- MANAGER_PRIVILEGED=1  # default: 0
+      #- NO_UVLOOP=1  # default: 0
+      #- MULTIPROCESSING=1  # default: 0
+      #- EXECUTOR_NICENESS_INCREMENT=5  # default: 2
+      #- DEBUG=1  # debug logging, default: 0
+# ↑------ Advanced settings ------↑ #
